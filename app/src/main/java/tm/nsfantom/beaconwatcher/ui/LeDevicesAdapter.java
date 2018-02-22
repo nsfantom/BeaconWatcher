@@ -54,6 +54,14 @@ public final class LeDevicesAdapter extends RecyclerView.Adapter<LeDevicesAdapte
     public void addDevice(BluetoothDevice device) {
         if (!bluetoothDevices.contains(device)) {
             bluetoothDevices.add(device);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void removeDevice(BluetoothDevice device){
+        if(bluetoothDevices.contains(device)){
+            bluetoothDevices.remove(device);
+            notifyDataSetChanged();
         }
     }
 
@@ -63,6 +71,7 @@ public final class LeDevicesAdapter extends RecyclerView.Adapter<LeDevicesAdapte
 
     public void clear() {
         bluetoothDevices.clear();
+        notifyDataSetChanged();
     }
 
     public void setItemClickedListener(ItemClickedListener itemClickedListener) {

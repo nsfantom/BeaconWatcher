@@ -18,13 +18,26 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside">
 
+            <Switch
+                android:id="@+id/switchMuTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Only MuTag"
+                android:layout_marginStart="8dp"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:indeterminate="true"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"/>
 
             <ToggleButton
                 android:id="@+id/toggleRefresh"
@@ -32,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:textOff="start"
                 android:textOn="stop"
-                android:checked="true"/>
+                android:checked="true"
+                android:layout_marginEnd="8dp"/>
 
         </LinearLayout>
 
