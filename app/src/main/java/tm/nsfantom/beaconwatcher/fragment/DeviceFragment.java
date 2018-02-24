@@ -266,4 +266,5 @@ public class DeviceFragment extends Fragment {
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
+
 }

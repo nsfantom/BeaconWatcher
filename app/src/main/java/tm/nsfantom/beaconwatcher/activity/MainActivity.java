@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,9 +15,10 @@ import android.widget.Toast;
 import tm.nsfantom.beaconwatcher.R;
 import tm.nsfantom.beaconwatcher.fragment.DeviceFragment;
 import tm.nsfantom.beaconwatcher.fragment.MainFragment;
+import tm.nsfantom.beaconwatcher.fragment.MainFragmentL;
 import tm.nsfantom.beaconwatcher.util.Constants;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.Listener, DeviceFragment.Listener {
+public class MainActivity extends AppCompatActivity implements MainFragment.Listener, DeviceFragment.Listener, MainFragmentL.Listener {
 
     private BluetoothAdapter mBluetoothAdapter;
 
@@ -42,9 +44,16 @@ public class MainActivity extends AppCompatActivity implements MainFragment.List
                 finish();
                 return;
             }
-            getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, MainFragment.newInstance(mBluetoothAdapter))
-                    .commit();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(android.R.id.content, MainFragmentL.newInstance(mBluetoothAdapter))
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .add(android.R.id.content, MainFragment.newInstance(mBluetoothAdapter))
+                        .commit();
+            }
+
         }
     }
 

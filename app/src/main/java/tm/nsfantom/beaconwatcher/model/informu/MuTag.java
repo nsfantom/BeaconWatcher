@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.apple;
+package tm.nsfantom.beaconwatcher.model.informu;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -6,10 +6,10 @@ import java.util.UUID;
 import tm.nsfantom.beaconwatcher.util.Converter;
 import tm.nsfantom.beaconwatcher.util.UuidUtil;
 
-public class IBeacon {
+public class MuTag {
 
     /*
-        IBeacon format found at http://stackoverflow.com/questions/18906988/what-is-the-ibeacon-bluetooth-profile
+        MuTag format found at http://stackoverflow.com/questions/18906988/what-is-the-ibeacon-bluetooth-profile
         02 # Number of bytes that follow in first AD structure
         01 # Flags AD type
         1A # Flags value 0x1A = 000011010
@@ -56,7 +56,7 @@ public class IBeacon {
      *
      * @param mfrData the manufacturer data from the advertisement
      */
-    public IBeacon(byte[] mfrData) {
+    public MuTag(byte[] mfrData) {
 
         if (!isIBeacon(mfrData)) {
             return;
