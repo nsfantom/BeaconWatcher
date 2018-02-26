@@ -103,7 +103,6 @@ public class MainFragmentL extends Fragment {
             scannerLeDevice(isChecked);
         });
 
-
     }
 
     private void scannerLeDevice(final boolean enable) {

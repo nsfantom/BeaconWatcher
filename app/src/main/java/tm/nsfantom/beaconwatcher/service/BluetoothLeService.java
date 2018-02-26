@@ -143,10 +143,10 @@ public class BluetoothLeService extends Service {
             int format = -1;
             if ((flag & 0x01) != 0) {
                 format = BluetoothGattCharacteristic.FORMAT_UINT16;
-                Timber.d("Heart rate format UINT16.");
+                Timber.d("IBeacon format UINT16.");
             } else {
                 format = BluetoothGattCharacteristic.FORMAT_UINT8;
-                Timber.d("Heart rate format UINT8.");
+                Timber.d("IBeacon format UINT8.");
             }
             final int heartRate = characteristic.getIntValue(format, 1);
             Timber.d("Received heart rate: %d", heartRate);

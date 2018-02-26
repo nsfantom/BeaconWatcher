@@ -44,15 +44,15 @@ public class MainActivity extends AppCompatActivity implements MainFragment.List
                 finish();
                 return;
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getSupportFragmentManager().beginTransaction()
-                        .add(android.R.id.content, MainFragmentL.newInstance(mBluetoothAdapter))
-                        .commit();
-            } else {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                getSupportFragmentManager().beginTransaction()
+//                        .add(android.R.id.content, MainFragmentL.newInstance(mBluetoothAdapter))
+//                        .commit();
+//            } else {
                 getSupportFragmentManager().beginTransaction()
                         .add(android.R.id.content, MainFragment.newInstance(mBluetoothAdapter))
                         .commit();
-            }
+//            }
 
         }
     }
