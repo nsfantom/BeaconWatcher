@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.fragment;
+package tm.nsfantom.beaconwatcher.ui.fragment;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -27,6 +27,7 @@ import java.util.List;
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.R;
 import tm.nsfantom.beaconwatcher.databinding.FragmentDeviceBinding;
+import tm.nsfantom.beaconwatcher.model.DisplayPermissions;
 import tm.nsfantom.beaconwatcher.service.BluetoothLeService;
 import tm.nsfantom.beaconwatcher.util.SampleGattAttributes;
 
@@ -65,7 +66,7 @@ public class DeviceFragment extends Fragment {
         }
         super.onAttach(context);
         listener = (Listener) getActivity();
-        Intent gattServiceIntent = new Intent(getActivity().getApplicationContext(), BluetoothLeService.class);
+        Intent gattServiceIntent = new Intent(getContext(), BluetoothLeService.class);
         getActivity().bindService(gattServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -146,7 +147,16 @@ public class DeviceFragment extends Fragment {
 
     private void displayData(String data) {
         if (data != null) {
+            Timber.e("display data: %s", data);
             layout.tvData.setText(data);
+        }
+    }
+
+    private void displayPermission(final DisplayPermissions displayPermissions) {
+        if (displayPermissions != null) {
+            Timber.e("display data: %s", displayPermissions);
+            //layout.tvData.setText(data);
+            layout.tvPermission.setText(displayPermissions.getText());
         }
     }
 
@@ -155,6 +165,7 @@ public class DeviceFragment extends Fragment {
     // on the UI.
     private void displayGattServices(List<BluetoothGattService> gattServices) {
         if (gattServices == null) return;
+        Timber.e("Display gatt services: %s", gattServices.size());
         String uuid = null;
         String unknownServiceString = getResources().getString(R.string.unknown_service);
         String unknownCharaString = getResources().getString(R.string.unknown_characteristic);
@@ -186,7 +197,7 @@ public class DeviceFragment extends Fragment {
             gattCharacteristicsList.add(charas);
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
-
+        Timber.e("gattCharacteristicData: %s", gattCharacteristicData.size());
         SimpleExpandableListAdapter gattServiceAdapter = new SimpleExpandableListAdapter(
                 getContext(),
                 gattServiceData,
@@ -215,6 +226,7 @@ public class DeviceFragment extends Fragment {
                 isConnected = true;
                 updateConnectionState(R.string.connected);
                 layout.toggleConnect.setChecked(isConnected);
+                displayGattServices(bluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 isConnected = false;
                 updateConnectionState(R.string.disconnected);
@@ -225,6 +237,9 @@ public class DeviceFragment extends Fragment {
                 displayGattServices(bluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                displayPermission(new DisplayPermissions()
+                        .setPermissions(intent.getIntExtra((BluetoothLeService.EXTRA_PERMISSIONS),0))
+                        .setProperties(intent.getIntExtra((BluetoothLeService.EXTRA_PROPERTIES),0)));
             }
         }
     };

@@ -35,8 +35,32 @@ public class SampleGattAttributes {
         attributes.put("0000180a-0000-1000-8000-00805f9b34fb", "Device Information Service");
         // Sample Characteristics.
         attributes.put(HEART_RATE_MEASUREMENT, "Heart Rate Measurement");
-        attributes.put(INFORMU_MU_TAG,"MU TAG");
-        attributes.put("00002a29-0000-1000-8000-00805f9b34fb", "Manufacturer Name String");
+        attributes.put(INFORMU_MU_TAG, "MU TAG");
+
+        attributes.put(InformuMuTagProfile.GENERIC_ACCESS_SERVICE.toString(), "Generic Access Service");
+        attributes.put(InformuMuTagProfile.DEVICE_NAME_UUID.toString(), "Device Name");
+        attributes.put(InformuMuTagProfile.APPEARANCE_UUID.toString(), "Appearance");
+
+
+        //attributes.put("","Mu Tag Device Info Service");
+        attributes.put(InformuMuTagProfile.MANUFACTURER_NAME_UUID.toString(), "Manufacturer Name");
+        attributes.put(InformuMuTagProfile.FIRMWARE_REVISION_STRING_UUID.toString(), "Firmware Revision String");
+        attributes.put(InformuMuTagProfile.MODEL_NUMBER_STRING_UUID.toString(), "Model Number String");
+        attributes.put(InformuMuTagProfile.SYSTEM_ID_UUID.toString(), "System ID");
+        attributes.put(InformuMuTagProfile.BATTERY_LEVEL_UUID.toString(), "Battery Level");
+
+        attributes.put(InformuMuTagProfile.MU_TAG_CONFIGURATION_SERVICE.toString(), "Mu Tag Configuration Service");
+        attributes.put(InformuMuTagProfile.DEVICE_UUID.toString(), "Device UUID");
+        attributes.put(InformuMuTagProfile.DEVICE_MAJOR_UUID.toString(), "Device Major");
+        attributes.put(InformuMuTagProfile.DEVICE_MINOR_UUID.toString(), "Device Minor");
+        attributes.put(InformuMuTagProfile.TX_POWER_UUID.toString(), "Tx Power");
+        attributes.put(InformuMuTagProfile.AUTHENTICATE_CONNECTION_UUID.toString(), "Authenticate Connection");
+        attributes.put(InformuMuTagProfile.TAG_COLOR_UUID.toString(), "Tag Color");
+        attributes.put(InformuMuTagProfile.DEEP_SLEEP_UUID.toString(), "Deep Sleep");
+        attributes.put(InformuMuTagProfile.PROVISIONED_UUID.toString(), "Provisioned");
+        attributes.put(InformuMuTagProfile.ADVERTISING_INTERVAL_UUID.toString(), "Advertising Interval");
+
+        attributes.put(InformuMuTagProfile.SILICON_LABS_OTA.toString(),"Silicon Labs OTA");
     }
 
     public static String lookup(String uuid, String defaultName) {

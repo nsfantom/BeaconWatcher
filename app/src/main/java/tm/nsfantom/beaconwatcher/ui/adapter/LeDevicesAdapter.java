@@ -1,10 +1,7 @@
-package tm.nsfantom.beaconwatcher.ui;
+package tm.nsfantom.beaconwatcher.ui.adapter;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanResult;
 import android.databinding.DataBindingUtil;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -20,12 +17,13 @@ import tm.nsfantom.beaconwatcher.databinding.ListitemDeviceBinding;
 /**
  * Created by fantom on 27-Sep-17.
  */
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-public final class LeScanResultAdapter extends RecyclerView.Adapter<LeScanResultAdapter.ResultHolder> {
+
+public final class LeDevicesAdapter extends RecyclerView.Adapter<LeDevicesAdapter.ResultHolder> {
 
     private ItemClickedListener itemClickedListener;
 
-    private List<ScanResult> bluetoothDevices = new ArrayList<>();
+    private List<BluetoothDevice> bluetoothDevices = new ArrayList<>();
+    private SparseArray<Double> distanceArray = new SparseArray<>();
 
     @Override public ResultHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -36,15 +34,13 @@ public final class LeScanResultAdapter extends RecyclerView.Adapter<LeScanResult
     @Override public void onBindViewHolder(ResultHolder holder, int position) {
         if(position != holder.getAdapterPosition()) return;
 
-        ScanResult device = bluetoothDevices.get(position);
-        final String deviceName = device.getDevice().getName();
+        BluetoothDevice device = bluetoothDevices.get(position);
+        final String deviceName = device.getName();
         if (deviceName != null && deviceName.length() > 0)
             holder.layout.deviceName.setText(deviceName);
         else
             holder.layout.deviceName.setText(R.string.unknown_device);
-        holder.layout.deviceAddress.setText(device.getDevice().getAddress());
-//        holder.layout.tvDistance.setVisibility(View.VISIBLE);
-//        holder.layout.tvDistance.setText(String.valueOf(calculateDistance(device.getTxPower(),device.getRssi())));
+        holder.layout.deviceAddress.setText(device.getAddress());
 //        holder.itemView.setBackgroundResource(R.color.colorItemBackground);
     }
 
@@ -57,21 +53,21 @@ public final class LeScanResultAdapter extends RecyclerView.Adapter<LeScanResult
         return position;
     }
 
-    public void addResult(ScanResult device) {
+    public void addDevice(BluetoothDevice device) {
         if (!bluetoothDevices.contains(device)) {
             bluetoothDevices.add(device);
             notifyDataSetChanged();
         }
     }
 
-    public void removeResult(ScanResult device){
+    public void removeDevice(BluetoothDevice device){
         if(bluetoothDevices.contains(device)){
             bluetoothDevices.remove(device);
             notifyDataSetChanged();
         }
     }
 
-    public ScanResult getDevice(int position) {
+    public BluetoothDevice getDevice(int position) {
         return bluetoothDevices.get(position);
     }
 
@@ -88,20 +84,6 @@ public final class LeScanResultAdapter extends RecyclerView.Adapter<LeScanResult
         void onItemClicked(BluetoothDevice bluetoothDevice);
     }
 
-    public double calculateDistance(int txPower, double rssi) {
-        if (rssi == 0) {
-            return -1.0; // if we cannot determine accuracy, return -1.
-        }
-        double ratio = rssi * 1.0 / txPower;
-        if (ratio < 1.0) {
-            return Math.pow(ratio, 10);
-        } else {
-            double accuracy = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
-            return accuracy;
-        }
-    }
-
-
     class ResultHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ListitemDeviceBinding layout;
@@ -117,7 +99,7 @@ public final class LeScanResultAdapter extends RecyclerView.Adapter<LeScanResult
 
         @Override public void onClick(View view) {
             if(itemClickedListener!=null)
-                itemClickedListener.onItemClicked(bluetoothDevices.get(getAdapterPosition()).getDevice());
+                itemClickedListener.onItemClicked(bluetoothDevices.get(getAdapterPosition()));
         }
     }
 }

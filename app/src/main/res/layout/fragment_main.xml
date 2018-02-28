@@ -22,31 +22,31 @@
                 android:id="@+id/switchMuTag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Only MuTag"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="8dp"
+                android:text="Only MuTag" />
 
             <android.support.v4.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
                 android:indeterminate="true"
-                android:visibility="gone"
-                android:layout_marginEnd="8dp"/>
+                android:visibility="gone" />
 
             <ToggleButton
                 android:id="@+id/toggleRefresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textOff="start"
-                android:textOn="stop"
+                android:layout_marginEnd="8dp"
                 android:checked="true"
-                android:layout_marginEnd="8dp"/>
+                android:textOff="start"
+                android:textOn="stop" />
 
         </LinearLayout>
 
@@ -54,9 +54,29 @@
             android:id="@+id/rvDevice"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/llBottomControls"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llControls" />
+
+        <LinearLayout
+            android:id="@+id/llBottomControls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvDevice"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btnSimulate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Simulate" />
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>
