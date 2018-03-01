@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.common;
+package tm.nsfantom.beaconwatcher.ble;
 
 import java.util.Arrays;
 import java.util.Collections;

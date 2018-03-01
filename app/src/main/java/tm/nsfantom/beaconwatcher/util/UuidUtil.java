@@ -21,4 +21,19 @@ public class UuidUtil {
         bb.putLong(uuid.getLeastSignificantBits());
         return bb.array();
     }
+
+    private static final long leastSigUuidBits = 0x800000805f9b34fbL;
+
+    public static UUID stringToUuid(String uuidString) {
+        UUID uuid;
+        if (uuidString.length() == 4) {
+            /* it is a short form uuid */
+            uuid = new UUID((Long.parseLong(uuidString, 16) << 32) | 0x1000, leastSigUuidBits);
+        } else {
+            uuid = UUID.fromString(uuidString);
+        }
+
+        return uuid;
+    }
+
 }

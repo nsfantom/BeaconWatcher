@@ -56,13 +56,16 @@ public class MainFragmentL extends BaseMonitorFragment {
             }
             startScan(isChecked);
         });
-        layout.btnSimulate.setOnClickListener(v -> listener.onSimulate());
+        layout.btnAdvertise.setOnClickListener(v -> listener.onAdvertise());
+        layout.btnSimulate.setOnClickListener(v-> listener.onSimulate());
 
     }
 
     @Override
     protected void startScan(boolean enable) {
+        if (getBTAdapter() == null) return;
         final BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+        if (bluetoothLeScanner == null) return;
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(() -> {

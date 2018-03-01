@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 
 import timber.log.Timber;
+import tm.nsfantom.beaconwatcher.util.BluetoothUtils;
 
 
 public final class BeaconApp extends Application {
@@ -21,8 +22,7 @@ public final class BeaconApp extends Application {
     }
 
     public BluetoothAdapter getBluetoothAdapter() {
-        if (bluetoothAdapter == null)
-            bluetoothAdapter = ((BluetoothManager) getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE)).getAdapter();
+        if (bluetoothAdapter == null) bluetoothAdapter = BluetoothUtils.getBluetoothAdapter(getApplicationContext());
         return bluetoothAdapter;
     }
 }

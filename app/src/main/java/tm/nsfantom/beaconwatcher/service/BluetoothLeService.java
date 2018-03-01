@@ -32,6 +32,8 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.UUID;
 
@@ -251,6 +253,16 @@ public class BluetoothLeService extends Service {
         // parameter to false.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mBluetoothGatt = device.connectGatt(this, false, mGattCallback, 2);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            try {
+                Method connectGattMethod = device.getClass().getMethod("connectGatt", Context.class, boolean.class, BluetoothGattCallback.class, int.class);
+                mBluetoothGatt = (BluetoothGatt) connectGattMethod.invoke(device,this, false, mGattCallback, 2);
+                return true;
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                //NoSuchMethod
+                return false;
+            }
+//            mBluetoothGatt = (BluetoothGatt) connectGattMethod.invoke(this, false, mGattCallback,2);
         } else {
             mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
         }

@@ -27,6 +27,8 @@ public abstract class BaseMonitorFragment extends Fragment {
     public interface Listener {
         void onDeviceClicked(BluetoothDevice device);
 
+        void onAdvertise();
+
         void onSimulate();
     }
 
@@ -55,6 +57,12 @@ public abstract class BaseMonitorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mHandler = new Handler();
         init();
+//        startScan(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         startScan(true);
     }
 
@@ -70,7 +78,7 @@ public abstract class BaseMonitorFragment extends Fragment {
         // BluetoothAdapter through BluetoothManager.
 //        final BluetoothManager bluetoothManager = (BluetoothManager) getActivity().getSystemService(Context.BLUETOOTH_SERVICE);
 //        bluetoothAdapter = bluetoothManager.getAdapter();
-        bluetoothAdapter = ((BeaconApp)getActivity().getApplication()).getBluetoothAdapter();
+        bluetoothAdapter = ((BeaconApp) getActivity().getApplication()).getBluetoothAdapter();
         // Checks if Bluetooth is supported on the device.
         if (bluetoothAdapter == null) {
             Toast.makeText(getActivity(), R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
