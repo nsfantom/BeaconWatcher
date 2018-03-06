@@ -33,5 +33,9 @@
     <string name="txt_start">start</string>
     <string name="txt_stop">stop</string>
     <string name="txt_filter">Only MuTag</string>
+    <string name="tv_major">Major: %d</string>
+    <string name="tv_minor">Minor: %d</string>
+    <string name="tv_rssi">rssi: %d</string>
+    <string name="tv_txpower">Tx: %d</string>
 
 </resources>

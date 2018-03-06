@@ -46,12 +46,10 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.neovisionaries.bluetooth.ble.advertising.ADPayloadParser;
-import com.neovisionaries.bluetooth.ble.advertising.IBeacon;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.BuildConfig;
@@ -60,7 +58,7 @@ import tm.nsfantom.beaconwatcher.ble.MuTagBuilder;
 import tm.nsfantom.beaconwatcher.databinding.FragmentSimpleadvertiserBinding;
 import tm.nsfantom.beaconwatcher.ui.adapter.ColorSpinnerAdapter;
 import tm.nsfantom.beaconwatcher.util.Constants;
-import tm.nsfantom.beaconwatcher.util.InformuMuTagProfile;
+import tm.nsfantom.beaconwatcher.util.TagProfile;
 import tm.nsfantom.beaconwatcher.util.PrefStorage;
 import tm.nsfantom.beaconwatcher.util.UuidUtil;
 
@@ -207,35 +205,35 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
             public void onCharacteristicReadRequest(BluetoothDevice device, int requestId, int offset, BluetoothGattCharacteristic characteristic) {
                 Timber.d("onCharacteristicReadRequest: requestId=" + requestId + " offset=" + offset);
                 Timber.d("uuid: %s", characteristic.getUuid());
-                if (characteristic.getUuid().equals(InformuMuTagProfile.DEVICE_NAME_UUID.getUuid())) {
+                if (characteristic.getUuid().equals(TagProfile.DEVICE_NAME_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue(layout.etDeviceName.getText().toString());
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.DEVICE_MAJOR_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.DEVICE_MAJOR_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue(layout.etMajor.getText().toString());
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.DEVICE_MINOR_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.DEVICE_MINOR_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue(layout.etMinor.getText().toString());
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.TAG_COLOR_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.TAG_COLOR_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name :%s", device.getName(),prefStorage.getTagColor());
                     characteristic.setValue(String.valueOf(prefStorage.getTagColor()));
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.MODEL_NUMBER_STRING_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.MODEL_NUMBER_STRING_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue("android1");
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.FIRMWARE_REVISION_STRING_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.FIRMWARE_REVISION_STRING_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue(BuildConfig.VERSION_NAME);
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.SYSTEM_ID_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.SYSTEM_ID_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue("010101");
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.BATTERY_LEVEL_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.BATTERY_LEVEL_UUID.getUuid())) {
                     Timber.d("%s is reading characteristic device name", device.getName());
                     characteristic.setValue("3");
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, characteristic.getValue());
@@ -249,7 +247,7 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
                         + Boolean.toString(preparedWrite) + " responseNeeded="
                         + Boolean.toString(responseNeeded) + " offset=" + offset);
 
-                if (characteristic.getUuid().equals(InformuMuTagProfile.DEVICE_MAJOR_UUID.getUuid())) {
+                if (characteristic.getUuid().equals(TagProfile.DEVICE_MAJOR_UUID.getUuid())) {
                     Timber.d("%s is writing characteristic", device.getName());
                     if (value != null && value.length > 0) {
                         String str = new String(value);
@@ -260,7 +258,7 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
                         Timber.d("Invalid value.");
                     }
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, null);
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.DEVICE_MINOR_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.DEVICE_MINOR_UUID.getUuid())) {
                     Timber.d("%s is writing characteristic", device.getName());
                     if (value != null && value.length > 0) {
                         String str = new String(value);
@@ -271,7 +269,7 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
                         Timber.d("Invalid value.");
                     }
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, null);
-                } else if (characteristic.getUuid().equals(InformuMuTagProfile.TAG_COLOR_UUID.getUuid())) {
+                } else if (characteristic.getUuid().equals(TagProfile.TAG_COLOR_UUID.getUuid())) {
                     Timber.d("%s is writing characteristic", device.getName());
                     if (value != null && value.length > 0) {
                         int position = ColorSpinnerAdapter.TagColor.getIndex(value[0]);
@@ -348,9 +346,9 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
     private void startGattServer() {
         gattServer = getBTManager().openGattServer(getContext(), gattCallback);
 
-//        gattServer.addService(InformuMuTagProfile.createInformuGenericAccessService());
-        gattServer.addService(InformuMuTagProfile.createConfigurationService());
-        gattServer.addService(InformuMuTagProfile.createOTAService());
+//        gattServer.addService(TagProfile.createInformuGenericAccessService());
+        gattServer.addService(TagProfile.createConfigurationService());
+        gattServer.addService(TagProfile.createOTAService());
     }
 
     private void stopGattServer() {
@@ -364,23 +362,23 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
 
     public void notifyCharacteristicChanged() {
         if (managedDevices.isEmpty()) return;
-//        BluetoothGattService service = gattServer.getService(InformuMuTagProfile.GENERIC_ACCESS_SERVICE.getUuid());
+//        BluetoothGattService service = gattServer.getService(TagProfile.GENERIC_ACCESS_SERVICE.getUuid());
 //        BluetoothGattCharacteristic characteristic = gattServer
-//                .getService(InformuMuTagProfile.GENERIC_ACCESS_SERVICE.getUuid())
-//                .getCharacteristic(InformuMuTagProfile.DEVICE_NAME_UUID.getUuid());
+//                .getService(TagProfile.GENERIC_ACCESS_SERVICE.getUuid())
+//                .getCharacteristic(TagProfile.DEVICE_NAME_UUID.getUuid());
 //        characteristic.setValue(layout.etDeviceName.getText().toString());
 
         BluetoothGattCharacteristic characteristicMajor = gattServer
-                .getService(InformuMuTagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
-                .getCharacteristic(InformuMuTagProfile.DEVICE_MAJOR_UUID.getUuid());
+                .getService(TagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
+                .getCharacteristic(TagProfile.DEVICE_MAJOR_UUID.getUuid());
         characteristicMajor.setValue(layout.etMajor.getText().toString());
         BluetoothGattCharacteristic characteristicMinor = gattServer
-                .getService(InformuMuTagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
-                .getCharacteristic(InformuMuTagProfile.DEVICE_MINOR_UUID.getUuid());
+                .getService(TagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
+                .getCharacteristic(TagProfile.DEVICE_MINOR_UUID.getUuid());
         characteristicMinor.setValue(layout.etMinor.getText().toString());
         BluetoothGattCharacteristic characteristicColor = gattServer
-                .getService(InformuMuTagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
-                .getCharacteristic(InformuMuTagProfile.TAG_COLOR_UUID.getUuid());
+                .getService(TagProfile.MU_TAG_CONFIGURATION_SERVICE.getUuid())
+                .getCharacteristic(TagProfile.TAG_COLOR_UUID.getUuid());
         characteristicColor.setValue(String.valueOf(prefStorage.getTagColor()));
 
         for (BluetoothDevice device : managedDevices) {
@@ -394,7 +392,7 @@ public class SimpleSimulateFragment extends Fragment implements TextView.OnEdito
 
     private AdvertiseData createAdvData() {
         ByteBuffer mManufacturerData = ByteBuffer.allocate(24);
-        byte[] uuid = UuidUtil.asBytes(InformuMuTagProfile.MU_DEVICE_UUID.getUuid());
+        byte[] uuid = UuidUtil.asBytes(TagProfile.MU_DEVICE_UUID.getUuid());
         mManufacturerData.put(0, (byte)0xBE); // Beacon Identifier
         mManufacturerData.put(1, (byte)0xAC); // Beacon Identifier
         for (int i=2; i<=17; i++) {

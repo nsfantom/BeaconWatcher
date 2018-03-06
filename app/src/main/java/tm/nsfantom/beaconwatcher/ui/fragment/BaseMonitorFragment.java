@@ -13,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.polidea.rxandroidble.RxBleDevice;
+
+import org.altbeacon.beacon.Beacon;
+
 import tm.nsfantom.beaconwatcher.BeaconApp;
 import tm.nsfantom.beaconwatcher.R;
 import tm.nsfantom.beaconwatcher.databinding.FragmentMainBinding;
@@ -26,6 +30,10 @@ public abstract class BaseMonitorFragment extends Fragment {
 
     public interface Listener {
         void onDeviceClicked(BluetoothDevice device);
+
+        void onRXDeviceClicked(RxBleDevice device);
+
+        void onBeaconClicked(Beacon beacon);
 
         void onAdvertise();
 

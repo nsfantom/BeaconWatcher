@@ -18,7 +18,7 @@ import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.model.BTDeviceItem;
 import tm.nsfantom.beaconwatcher.ui.adapter.LeScanResultAdapter;
 import tm.nsfantom.beaconwatcher.util.Constants;
-import tm.nsfantom.beaconwatcher.util.InformuMuTagProfile;
+import tm.nsfantom.beaconwatcher.util.TagProfile;
 
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -121,7 +121,7 @@ public class MainFragmentL extends BaseMonitorFragment {
         List<ScanFilter> scanFilters = new ArrayList<>();
         scanFilters.add(
                 new ScanFilter.Builder()
-                        .setServiceUuid(InformuMuTagProfile.MU_DEVICE_UUID)
+                        .setServiceUuid(TagProfile.MU_DEVICE_UUID)
                         .build()
         );
         return scanFilters;

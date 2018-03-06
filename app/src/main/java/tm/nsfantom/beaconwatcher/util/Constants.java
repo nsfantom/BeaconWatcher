@@ -8,4 +8,7 @@ public class Constants {
     // Stops scanning after 10 seconds.
     public static final long SCAN_PERIOD = 10000;
     public static final int ADVERTISE_TIMEOUT = 0;
+
+    public static final boolean isRxBle = false;
+    public static final boolean isAlt = true;
 }

@@ -154,7 +154,7 @@ public class BluetoothLeService extends Service {
             Timber.d("Received heart rate: %d", heartRate);
             intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
         }
-//        else if (InformuMuTagProfile.BATTERY_LEVEL_UUID.getUuid().equals(charsUUID)) {
+//        else if (TagProfile.BATTERY_LEVEL_UUID.getUuid().equals(charsUUID)) {
 //            BatteryLevel bl = new BatteryLevel(characteristic.getValue());
 //            intent.putExtra(EXTRA_DATA, "BatteryLevel: " + bl.getLevel() + "%");
 //        }
@@ -333,7 +333,7 @@ public class BluetoothLeService extends Service {
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         }
-//        else if(InformuMuTagProfile.TAG_COLOR_UUID.getUuid().equals(characteristic.getUuid())){
+//        else if(TagProfile.TAG_COLOR_UUID.getUuid().equals(characteristic.getUuid())){
 //            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
 //                    UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
 //            descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);

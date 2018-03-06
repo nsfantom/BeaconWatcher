@@ -3,20 +3,37 @@ package tm.nsfantom.beaconwatcher.ui.activity;
 import android.bluetooth.BluetoothDevice;
 import android.os.Build;
 
+import com.polidea.rxandroidble.RxBleDevice;
+
+import org.altbeacon.beacon.Beacon;
+
 import tm.nsfantom.beaconwatcher.R;
 import tm.nsfantom.beaconwatcher.ui.fragment.BaseMonitorFragment;
+import tm.nsfantom.beaconwatcher.ui.fragment.BeaconFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.DeviceFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.MainFragment;
+import tm.nsfantom.beaconwatcher.ui.fragment.MainFragmentAlt;
 import tm.nsfantom.beaconwatcher.ui.fragment.MainFragmentL;
+import tm.nsfantom.beaconwatcher.ui.fragment.MainFragmentRX;
 import tm.nsfantom.beaconwatcher.ui.fragment.SimpleAdvertiserFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.SimpleSimulateFragment;
+import tm.nsfantom.beaconwatcher.util.Constants;
 
 
-public final class MainActivity extends BasePermissionActivity implements BaseMonitorFragment.Listener, DeviceFragment.Listener {
+public final class MainActivity extends BasePermissionActivity implements BaseMonitorFragment.Listener, DeviceFragment.Listener, BeaconFragment.Listener {
 
     @Override
     void init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if(Constants.isAlt)
+            getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, MainFragmentAlt.newInstance())
+                    .commit();
+        else if(Constants.isRxBle){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, MainFragmentRX.newInstance())
+                    .commit();
+        }
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getSupportFragmentManager().beginTransaction()
                     .replace(android.R.id.content, MainFragmentL.newInstance())
                     .commit();
@@ -31,6 +48,20 @@ public final class MainActivity extends BasePermissionActivity implements BaseMo
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(android.R.id.content, DeviceFragment.newInstance(device))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onRXDeviceClicked(RxBleDevice device) {
+
+    }
+
+    @Override
+    public void onBeaconClicked(Beacon beacon) {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(android.R.id.content, BeaconFragment.newInstance(beacon))
                 .addToBackStack(null)
                 .commit();
     }

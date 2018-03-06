@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.ble;
+package tm.nsfantom.beaconwatcher.ble.optional;
 /*
  * Copyright 2016 Google Inc. All rights reserved.
  *
@@ -20,22 +20,18 @@ import android.annotation.TargetApi;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertiseSettings;
 import android.os.ParcelUuid;
-import android.util.Log;
-import android.util.SparseArray;
-import android.webkit.URLUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.Locale;
 import java.util.UUID;
 
-import tm.nsfantom.beaconwatcher.util.InformuMuTagProfile;
+import tm.nsfantom.beaconwatcher.util.TagProfile;
 
 /**
  * Helper class to simplify Eddystone URL encoding.
  **/
 public class AdvertiseDataUtils {
-    private static final ParcelUuid BEACON_UUID = InformuMuTagProfile.MU_DEVICE_UUID;
+    private static final ParcelUuid BEACON_UUID = TagProfile.MU_DEVICE_UUID;
 
     private static final byte URL_FRAME_TYPE = 0x10;
     private static final byte FAT_BEACON = 0x0e;

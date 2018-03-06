@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.ble;
+package tm.nsfantom.beaconwatcher.ble.optional;
 /*
  * Copyright 2016 Google Inc. All rights reserved.
  *

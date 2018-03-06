@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.ble;
+package tm.nsfantom.beaconwatcher.ble.optional;
 
 /**
  * GAP Data types
