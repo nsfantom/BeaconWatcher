@@ -89,7 +89,7 @@ public final class MainActivity extends BasePermissionActivity implements BaseMo
     public void onAltAdvertise() {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(android.R.id.content, AltAdvertiserFragment.newInstance(getBTAdapter()))
+                .replace(android.R.id.content, AltAdvertiserFragment.newInstance())
                 .addToBackStack(null)
                 .commit();
     }
