@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.ui.adapter.LeDevicesAdapter;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.util.Constants;
 import tm.nsfantom.beaconwatcher.util.SampleGattAttributes;
 

@@ -22,12 +22,13 @@ import org.altbeacon.beacon.BeaconTransmitter;
 
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.R;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.AdvertiseFragment;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 
 /**
  * Allows user to start & stop Bluetooth LE Advertising of their device.
  */
-public class AltAdvertiserFragment extends AdvertiseFragment{
+public final class AltAdvertiserFragment extends AdvertiseFragment {
 
     private BeaconTransmitter beaconTransmitter;
 

@@ -9,7 +9,7 @@ import org.altbeacon.beacon.Beacon;
 
 import tm.nsfantom.beaconwatcher.R;
 import tm.nsfantom.beaconwatcher.ui.fragment.AltAdvertiserFragment;
-import tm.nsfantom.beaconwatcher.ui.fragment.BaseMonitorFragment;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.BeaconFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.DeviceFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.MainFragment;

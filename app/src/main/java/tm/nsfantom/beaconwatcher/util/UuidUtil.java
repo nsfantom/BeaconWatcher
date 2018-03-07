@@ -3,11 +3,7 @@ package tm.nsfantom.beaconwatcher.util;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
-/**
- * Created by user on 2/22/18.
- */
-
-public class UuidUtil {
+public final class UuidUtil {
     public static UUID asUuid(byte[] bytes) {
         ByteBuffer bb = ByteBuffer.wrap(bytes);
         long firstLong = bb.getLong();

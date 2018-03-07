@@ -1,6 +1,6 @@
 package tm.nsfantom.beaconwatcher.util;
 
-public class Constants {
+public final class Constants {
     public static final int REQUEST_ENABLE_BT = 1;
     public static final int REQUEST_COARSE = 2;
     public static final int REQUEST_BLUETOOTH_ENABLE_CODE = 101;

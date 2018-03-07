@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-public class BluetoothUtils {
+public final class BluetoothUtils {
 
     public static BluetoothAdapter getBluetoothAdapter(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)

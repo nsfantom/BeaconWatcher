@@ -27,6 +27,7 @@ import java.nio.ByteBuffer;
 
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.R;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.AdvertiseFragment;
 import tm.nsfantom.beaconwatcher.util.Constants;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 
@@ -34,7 +35,7 @@ import tm.nsfantom.beaconwatcher.util.TagProfile;
  * Allows user to start & stop Bluetooth LE Advertising of their device.
  */
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class SimpleAdvertiserFragment extends AdvertiseFragment {
+public final class SimpleAdvertiserFragment extends AdvertiseFragment {
 
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothLeAdvertiser bTAdvertiser;

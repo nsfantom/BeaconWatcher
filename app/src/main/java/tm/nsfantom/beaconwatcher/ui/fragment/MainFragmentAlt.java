@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.ui.adapter.BeaconAdapter;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 
 public class MainFragmentAlt extends BaseMonitorFragment implements BeaconConsumer {

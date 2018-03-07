@@ -4,13 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.os.ParcelUuid;
 
-import java.util.UUID;
 
-/**
- * Created by user on 2/24/18.
- */
-
-public class TagProfile {
+public final class TagProfile {
     public static final String MU_DEVICEUUID = "DE7EC7ED-1055-B055-C0DE-DEFEA7EDFA7E".toLowerCase();
     public static final ParcelUuid MU_DEVICE_UUID = ParcelUuid.fromString(MU_DEVICEUUID);
 
@@ -168,7 +163,7 @@ public class TagProfile {
                 BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
                 BluetoothGattCharacteristic.PERMISSION_READ
         );
-        BluetoothGattCharacteristic gcSystemId= new BluetoothGattCharacteristic(SYSTEM_ID_UUID.getUuid(),
+        BluetoothGattCharacteristic gcSystemId = new BluetoothGattCharacteristic(SYSTEM_ID_UUID.getUuid(),
                 BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
                 BluetoothGattCharacteristic.PERMISSION_READ
         );
@@ -190,7 +185,6 @@ public class TagProfile {
     public static BluetoothGattService createOTAService() {
         return new BluetoothGattService(SILICON_LABS_OTA.getUuid(), BluetoothGattService.SERVICE_TYPE_SECONDARY);
     }
-
 
 
 }

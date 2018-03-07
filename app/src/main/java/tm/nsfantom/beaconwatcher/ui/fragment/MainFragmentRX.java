@@ -16,6 +16,7 @@ import rx.Subscription;
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.model.BLEDeviceItem;
 import tm.nsfantom.beaconwatcher.ui.adapter.BLEScanResultAdapter;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.util.Constants;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 

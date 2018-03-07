@@ -22,7 +22,7 @@ import tm.nsfantom.beaconwatcher.util.BluetoothUtils;
 import tm.nsfantom.beaconwatcher.util.PrefStorage;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 
-public class BleGattServerCallbackWrapper {
+public final class BleGattServerCallbackWrapper {
     private BluetoothGattServer gattServer;
     private BluetoothGattServerCallback gattCallback;
     private BluetoothAdapter bluetoothAdapter;

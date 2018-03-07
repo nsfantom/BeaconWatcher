@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Created by user on 2/22/18.
  */
 
-public class Converter {
+public final class Converter {
     /**
      * Converts a byte array of data to an integer
      * Automatically pads byte arrays with length < 4

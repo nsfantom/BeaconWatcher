@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.ui.fragment;
+package tm.nsfantom.beaconwatcher.ui.fragment.base;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

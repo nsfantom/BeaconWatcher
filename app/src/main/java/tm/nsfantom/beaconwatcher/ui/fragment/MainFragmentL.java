@@ -17,6 +17,7 @@ import java.util.List;
 import timber.log.Timber;
 import tm.nsfantom.beaconwatcher.model.BTDeviceItem;
 import tm.nsfantom.beaconwatcher.ui.adapter.LeScanResultAdapter;
+import tm.nsfantom.beaconwatcher.ui.fragment.base.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.util.Constants;
 import tm.nsfantom.beaconwatcher.util.TagProfile;
 

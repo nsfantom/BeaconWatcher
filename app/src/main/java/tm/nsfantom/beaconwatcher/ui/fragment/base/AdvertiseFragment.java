@@ -1,4 +1,4 @@
-package tm.nsfantom.beaconwatcher.ui.fragment;
+package tm.nsfantom.beaconwatcher.ui.fragment.base;
 
 import android.bluetooth.le.AdvertiseCallback;
 import android.bluetooth.le.AdvertiseSettings;
@@ -62,7 +62,7 @@ public abstract class AdvertiseFragment extends Fragment implements TextView.OnE
         return layout.getRoot();
     }
 
-    abstract void init();
+    abstract protected void init();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -100,9 +100,9 @@ public abstract class AdvertiseFragment extends Fragment implements TextView.OnE
         });
     }
 
-    abstract void startAdvertise();
+    abstract protected void startAdvertise();
 
-    abstract void stopAdvertise();
+    abstract protected void stopAdvertise();
 
     private void toggleGattServer(boolean start) {
         if (bleGattServerCallbackWrapper == null) return;
