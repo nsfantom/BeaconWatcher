@@ -38,6 +38,8 @@ public abstract class BaseMonitorFragment extends Fragment {
         void onAdvertise();
 
         void onSimulate();
+
+        void onAltAdvertise();
     }
 
     @Override

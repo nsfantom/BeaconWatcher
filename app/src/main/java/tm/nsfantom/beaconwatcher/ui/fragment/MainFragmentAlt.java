@@ -49,6 +49,7 @@ public class MainFragmentAlt extends BaseMonitorFragment implements BeaconConsum
         layout.toggleRefresh.setOnCheckedChangeListener((buttonView, isChecked) -> startScan(isChecked));
         layout.btnAdvertise.setOnClickListener(v -> listener.onAdvertise());
         layout.btnSimulate.setOnClickListener(v -> listener.onSimulate());
+        layout.btnAltAdvertise.setOnClickListener(v-> listener.onAltAdvertise());
 
     }
 

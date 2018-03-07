@@ -8,6 +8,7 @@ import com.polidea.rxandroidble.RxBleDevice;
 import org.altbeacon.beacon.Beacon;
 
 import tm.nsfantom.beaconwatcher.R;
+import tm.nsfantom.beaconwatcher.ui.fragment.AltAdvertiserFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.BaseMonitorFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.BeaconFragment;
 import tm.nsfantom.beaconwatcher.ui.fragment.DeviceFragment;
@@ -80,6 +81,15 @@ public final class MainActivity extends BasePermissionActivity implements BaseMo
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(android.R.id.content, SimpleSimulateFragment.newInstance(getBTAdapter()))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onAltAdvertise() {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(android.R.id.content, AltAdvertiserFragment.newInstance(getBTAdapter()))
                 .addToBackStack(null)
                 .commit();
     }

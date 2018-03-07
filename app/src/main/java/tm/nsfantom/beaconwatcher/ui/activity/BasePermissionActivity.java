@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import tm.nsfantom.beaconwatcher.BeaconApp;
 import tm.nsfantom.beaconwatcher.R;
+import tm.nsfantom.beaconwatcher.util.BluetoothUtils;
 import tm.nsfantom.beaconwatcher.util.Constants;
 
 /**
@@ -88,7 +89,7 @@ public abstract class BasePermissionActivity extends AppCompatActivity implement
         // BluetoothAdapter through BluetoothManager.
 //        final BluetoothManager bluetoothManager = (BluetoothManager) getApplication().getSystemService(Context.BLUETOOTH_SERVICE);
 //        mBluetoothAdapter = bluetoothManager.getAdapter();
-        mBluetoothAdapter = ((BeaconApp) getApplication()).getBluetoothAdapter();
+        mBluetoothAdapter = BluetoothUtils.getBluetoothAdapter(getApplicationContext());
 
         // Checks if Bluetooth is supported on the device.
         if (mBluetoothAdapter == null) {
